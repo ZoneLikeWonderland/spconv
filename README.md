@@ -167,6 +167,14 @@ You need to remove ```cumm``` in ```requires``` section in pyproject.toml after 
 
 You need to ensure ```pip list | grep spconv``` and ```pip list | grep cumm``` show nothing before install editable spconv/cumm.
 
+A reliable local/container rebuild flow is:
+
+1. uninstall every existing ```spconv``` / ```cumm``` variant first, including versioned packages such as ```spconv-cuXXX``` and ```cumm-cuXXX```.
+2. install editable ```cumm``` with ```pip install -v --no-build-isolation -e .```.
+3. install editable ```spconv``` with ```pip install -v --no-build-isolation -e .```.
+4. if you build against a non-default CUDA toolkit, export ```CUMM_CUDA_VERSION``` before install/import, for example ```export CUMM_CUDA_VERSION=12.8```.
+5. if you launch scripts outside the source tree, prepend the checkout root to ```PYTHONPATH``` so ```pccm.utils.project_is_editable("spconv")``` can still resolve the package during JIT builds.
+
 #### Linux
 
 0. uninstall spconv and cumm installed by pip

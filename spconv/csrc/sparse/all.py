@@ -991,12 +991,12 @@ class SpconvOps(pccm.Class):
         return code.ret("tv::Tensor")
 
 
-    @pccm.pybind.mark
+    @pccm.pybind.mark(nogil=True)
     @_STATIC_FUNCTION
     def sort_1d_by_key_allocator(self):
         return self.sort_1d_by_key_allocator_template(False)
 
-    @pccm.pybind.mark
+    @pccm.pybind.mark(nogil=True)
     @_STATIC_FUNCTION
     def sort_1d_by_key_allocator_v2(self):
         return self.sort_1d_by_key_allocator_template(True)
@@ -1123,12 +1123,12 @@ class SpconvOps(pccm.Class):
 
 
 
-    @pccm.pybind.mark
+    @pccm.pybind.mark(nogil=True)
     @_STATIC_FUNCTION
     def sort_1d_by_key_split_allocator(self):
         return self.sort_1d_by_key_split_allocator_template(False)
 
-    @pccm.pybind.mark
+    @pccm.pybind.mark(nogil=True)
     @_STATIC_FUNCTION
     def sort_1d_by_key_split_allocator_v2(self):
         return self.sort_1d_by_key_split_allocator_template(True)
